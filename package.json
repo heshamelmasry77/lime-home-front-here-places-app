@@ -1,6 +1,10 @@
 {
   "name": "lime-home-front-here-places-app",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=0.12",
+    "yarn": "1.19.1"
+  },
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.11.0",
