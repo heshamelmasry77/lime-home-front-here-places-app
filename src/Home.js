@@ -1,29 +1,38 @@
 import React from 'react';
 import {Component} from 'react';
-import axios from 'axios';
+import HotelsMap from "./Shared/HotelsMap/HotelsMap";
+import {geolocated} from "react-geolocated";
 
 class Home extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     console.log('Home page');
     console.log(process.env.REACT_APP_APP_ID);
-    axios.get(`https://places.cit.api.here.com/places/v1/autosuggest?at=40.74917,-73.98529&q=hotels&app_id=${process.env.REACT_APP_APP_ID}&app_code=${process.env.REACT_APP_APP_CODE}
-`)
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (this.props.isGeolocationAvailable) {
+      console.log(this.props.coords)
+    }
   }
 
   render() {
-    return (
+    return !this.props.isGeolocationAvailable ? (
+      <div>Your browser does not support Geolocation</div>
+    ) : !this.props.isGeolocationEnabled ? (
+      <div>Geolocation is not enabled</div>
+    ) : this.props.coords ? (
       <div className="Home">
         <p>home page </p>
+        <HotelsMap location={this.props.coords}/>
       </div>
+    ) : (
+      <div>Getting the location data&hellip; </div>
     );
+
   }
 }
 
-export default Home;
+export default geolocated({
+  positionOptions: {
+    enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 5000,
+})(Home);
