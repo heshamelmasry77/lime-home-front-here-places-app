@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {compose} from "recompose"
+import './HotelMap.scss';
 import {
   withScriptjs,
   withGoogleMap,
@@ -77,16 +78,33 @@ export default class HotelsMap extends Component {
 
   render() {
     return (
-      <MapWithAMarker
-        selectedMarker={this.state.selectedMarker}
-        markers={this.state.hotelsData}
-        onClick={this.handleClick}
-        location={this.props.location}
-        googleMapURL ={ `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_googleMap_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-        loadingElement={<div style={{height: `100%`}}/>}
-        containerElement={<div style={{height: `400px`}}/>}
-        mapElement={<div style={{height: `100%`}}/>}
-      />
+      <div className="HotelsMap">
+        <div className="map">
+          <MapWithAMarker
+            selectedMarker={this.state.selectedMarker}
+            markers={this.state.hotelsData}
+            onClick={this.handleClick}
+            location={this.props.location}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_googleMap_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{height: `100%`}}/>}
+            containerElement={<div style={{height: `400px`}}/>}
+            mapElement={<div style={{height: `100%`}}/>}
+          />
+        </div>
+        <div className="locations-list">
+          <ul>
+            {this.state.hotelsData.map((hotel, index) => (
+              <li key={index}>
+                {hotel.title && <h3><span>Title : </span>{hotel.title}</h3>}
+                {hotel.category && <h4><span>category :</span> {hotel.category}</h4>}
+                {hotel.distance && <h5><span>distance :</span> {hotel.distance}</h5>}
+                {hotel.vicinity && <p>vicinity : {hotel.vicinity}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
     )
   }
 }

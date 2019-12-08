@@ -8,6 +8,7 @@ class Home extends Component {
     window.scrollTo(0, 0);
     console.log('Home page');
     console.log(process.env.REACT_APP_APP_ID);
+    console.log(this.props.isGeolocationAvailable)
     if (this.props.isGeolocationAvailable) {
       console.log(this.props.coords)
     }
