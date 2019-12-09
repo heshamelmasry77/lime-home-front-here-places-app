@@ -1,0 +1,46 @@
+.Cards {
+  grid-area: locations-list;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      display: block;
+      min-width: 200px;
+      width: auto;
+      min-height: 50px;
+      height: auto;
+      border-radius: 20px;
+      -webkit-box-shadow: 0 2px 20px -4px rgba(0, 0, 0, .39);
+      box-shadow: 0 2px 20px -4px rgba(0, 0, 0, .39);
+      vertical-align: middle;
+      position: relative;
+      text-align: left;
+      padding: 5px 5px;
+      margin: 10px;
+      float: left;
+      clear: both;
+
+      &:hover {
+        background-color: lightgray;
+        cursor: pointer;
+      }
+
+      a {
+        display: block;
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
+
+      h3, h4, h5 {
+        span {
+          font-weight: normal;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

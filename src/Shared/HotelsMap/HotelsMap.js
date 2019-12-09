@@ -9,20 +9,21 @@ import {
   InfoWindow
 } from "react-google-maps"
 import axios from "axios";
+import Cards from "../Cards/Cards";
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
-  console.log('props', props.location.latitude)
-  console.log('props', props.location.longitude)
+  // console.log('props', props.location.latitude)
+  // console.log('props', props.location.longitude)
   return (
     <GoogleMap defaultZoom={10} defaultCenter={{lat: props.location.latitude, lng: props.location.longitude}}>
       {props.markers.map((marker, index) => {
         const onClick = props.onClick.bind(this, marker);
-        console.log('marker', marker);
+        // console.log('marker', marker);
         let lat = marker.position ? marker.position[0] : null;
         let lng = marker.position ? marker.position[1] : null;
-        console.log(lat)
-        console.log(lng)
-        console.log(index);
+        // console.log(lat)
+        // console.log(lng)
+        // console.log(index);
         return (
           lat && lng &&
           <Marker
@@ -37,7 +38,6 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
               </div>
             </InfoWindow>}
           </Marker>
-
         )
       })}
     </GoogleMap>
@@ -47,6 +47,8 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 export default class HotelsMap extends Component {
   constructor(props) {
     super(props);
+    // this.handleCardClick = this.handleCardClick.bind(this);
+
     this.state = {
       hotelsData: [],
       selectedMarker: false
@@ -54,14 +56,14 @@ export default class HotelsMap extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     axios.get(`https://places.cit.api.here.com/places/v1/autosuggest?at=${this.props.location.latitude},${this.props.location.longitude}&q=hotels&app_id=${process.env.REACT_APP_APP_ID}&app_code=${process.env.REACT_APP_APP_CODE}
 `)
       .then(response => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         // if (response.data.results.length !== 0) {
         this.setState({hotelsData: response.data.results}, () => {
-          console.log(this.state);
+          // console.log(this.state);
         });
         // }
 
@@ -72,11 +74,18 @@ export default class HotelsMap extends Component {
   }
 
   handleClick = (marker, event) => {
-    // console.log({ marker })
+    // console.log(marker);
     this.setState({selectedMarker: marker})
   };
 
+  handleCardClick = (singleHotelData, event) => {
+    this.setState({selectedMarker: singleHotelData});
+    // console.log('singleHotelData: ', singleHotelData)
+  };
+
   render() {
+    const hotelsData = this.state.hotelsData;
+    // console.log(hotelsData);
     return (
       <div className="HotelsMap">
         <div className="map">
@@ -91,20 +100,8 @@ export default class HotelsMap extends Component {
             mapElement={<div style={{height: `100%`}}/>}
           />
         </div>
-        <div className="locations-list">
-          <ul>
-            {this.state.hotelsData.map((hotel, index) => (
-              <li key={index}>
-                {hotel.title && <h3><span>Title : </span>{hotel.title}</h3>}
-                {hotel.category && <h4><span>category :</span> {hotel.category}</h4>}
-                {hotel.distance && <h5><span>distance :</span> {hotel.distance}</h5>}
-                {hotel.vicinity && <p>vicinity : {hotel.vicinity}</p>}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {hotelsData.length > 0 && <Cards hotelsData={this.state.hotelsData} onCardClick={this.handleCardClick}/>}
       </div>
-
     )
   }
 }
