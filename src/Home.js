@@ -6,11 +6,11 @@ import {geolocated} from "react-geolocated";
 class Home extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
-    console.log('Home page');
-    console.log(process.env.REACT_APP_APP_ID);
-    console.log(this.props.isGeolocationAvailable)
+    // console.log('Home page');
+    // console.log(process.env.REACT_APP_APP_ID);
+    // console.log(this.props.isGeolocationAvailable)
     if (this.props.isGeolocationAvailable) {
-      console.log(this.props.coords)
+      // console.log(this.props.coords)
     }
   }
 
