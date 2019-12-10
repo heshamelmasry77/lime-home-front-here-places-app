@@ -48,7 +48,6 @@ export default class HotelsMap extends Component {
   constructor(props) {
     super(props);
     // this.handleCardClick = this.handleCardClick.bind(this);
-
     this.state = {
       hotelsData: [],
       selectedMarker: false
