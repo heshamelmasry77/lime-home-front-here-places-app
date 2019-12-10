@@ -4,6 +4,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import history from './history';
 
 import loadable from '@loadable/component'
+
 const Home = loadable(() => import('./Home'));
 const NotFound = loadable(() => import('./Shared/NotFound/NotFound'));
 

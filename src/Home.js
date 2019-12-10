@@ -7,7 +7,6 @@ import Spinner from "./Shared/Spinner/Spinner";
 class Home extends Component {
   constructor(props) {
     super(props);
-    // this.handleCardClick = this.handleCardClick.bind(this);
     this.state = {
       spinner: true
     }
@@ -15,9 +14,6 @@ class Home extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    // console.log('Home page');
-    // console.log(process.env.REACT_APP_APP_ID);
-    // console.log(this.props.isGeolocationAvailable)
     if (this.props.isGeolocationAvailable) {
       this.setState({spinner: false})
     }
