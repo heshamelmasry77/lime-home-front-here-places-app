@@ -1,16 +1,12 @@
 import React, {Component} from "react"
 import './Cards.scss';
 import PropTypes from "prop-types";
+import {FaHotel} from 'react-icons/fa';
+import {FiMapPin} from 'react-icons/fi';
+import {FaCarSide} from 'react-icons/fa';
 
 
 export default class Cards extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    // console.log(this.props);
-  }
 
   handleCardClick(hotel) {
     // console.log(this.props);
@@ -21,13 +17,13 @@ export default class Cards extends Component {
   render() {
     const Card = ({hotel}) => {
       return (
-        <a onClick={() => {
+        <a href={'#'} onClick={() => {
           this.handleCardClick(hotel)
         }}>
-          {hotel.title && <h3><span>Title : </span>{hotel.title}</h3>}
-          {hotel.category && <h4><span>category :</span> {hotel.category}</h4>}
-          {hotel.distance && <h5><span>distance :</span> {hotel.distance}</h5>}
-          {hotel.vicinity && <p>vicinity : {hotel.vicinity}</p>}
+          {hotel.title && <h3>{hotel.title}</h3>}
+          {hotel.category && <h4> <FaHotel/> {hotel.category}</h4>}
+          {hotel.distance && <h5><FaCarSide/> {hotel.distance}</h5>}
+          {hotel.vicinity && <p><FiMapPin/> {hotel.vicinity}</p>}
         </a>
       );
     };
@@ -44,7 +40,6 @@ export default class Cards extends Component {
     )
   }
 }
-
 
 Cards.propTypes = {
   onCardClick: PropTypes.func

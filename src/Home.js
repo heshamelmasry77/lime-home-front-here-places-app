@@ -21,7 +21,6 @@ class Home extends Component {
       <div>Geolocation is not enabled</div>
     ) : this.props.coords ? (
       <div className="Home">
-        <p>home page </p>
         <HotelsMap location={this.props.coords}/>
       </div>
     ) : (
