@@ -88,6 +88,7 @@ export default class HotelsMap extends Component {
     // console.log(hotelsData);
     return (
       <div className="HotelsMap">
+        <h2 className="maps-header">Hotels Around!!</h2>
         <div className="map">
           <MapWithAMarker
             selectedMarker={this.state.selectedMarker}
@@ -96,7 +97,7 @@ export default class HotelsMap extends Component {
             location={this.props.location}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_googleMap_KEY}&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement={<div style={{height: `100%`}}/>}
-            containerElement={<div style={{height: `400px`}}/>}
+            containerElement={<div style={{height: `calc(95vh - 25vh)`}}/>}
             mapElement={<div style={{height: `100%`}}/>}
           />
         </div>

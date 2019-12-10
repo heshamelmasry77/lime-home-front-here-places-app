@@ -2,9 +2,22 @@
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 50% 50%;
-  grid-template-areas: "locations-list map-with-marker";
+  grid-template-areas: "head head" "locations-list map-with-marker";
+  @media (max-width: 992px) {
+    grid-template-areas: "head head" "map-with-marker map-with-marker" "locations-list locations-list";
+  }
+  padding: 25px;
 
-  .map-with-marker {
+  .maps-header {
+    grid-area: head;
+    text-align: center;
+    color: white;
+    background-color: #039687;
+    max-width: 175px;
+    width: auto;
+  }
+
+  .map {
     grid-area: map-with-marker;
   }
 }

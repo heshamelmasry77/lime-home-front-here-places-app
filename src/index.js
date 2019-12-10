@@ -4,8 +4,11 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
+import Header from "./Shared/Header/Header";
+
 ReactDOM.render(
   <BrowserRouter>
+    <Header/>
     <App/>
   </BrowserRouter>,
   document.getElementById('root')
