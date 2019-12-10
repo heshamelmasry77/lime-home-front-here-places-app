@@ -5,12 +5,8 @@ import {FaHotel} from 'react-icons/fa';
 import {FiMapPin} from 'react-icons/fi';
 import {FaCarSide} from 'react-icons/fa';
 
-
 export default class Cards extends Component {
-
   handleCardClick(hotel) {
-    // console.log(this.props);
-    // console.log(hotel)
     this.props.onCardClick(hotel)
   }
 
@@ -21,7 +17,7 @@ export default class Cards extends Component {
           this.handleCardClick(hotel)
         }}>
           {hotel.title && <h3>{hotel.title}</h3>}
-          {hotel.category && <h4> <FaHotel/> {hotel.category}</h4>}
+          {hotel.category && <h4><FaHotel/> {hotel.category}</h4>}
           {hotel.distance && <h5><FaCarSide/> {hotel.distance}</h5>}
           {hotel.vicinity && <p><FiMapPin/> {hotel.vicinity}</p>}
         </a>
