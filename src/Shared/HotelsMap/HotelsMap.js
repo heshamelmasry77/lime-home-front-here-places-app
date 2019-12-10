@@ -1,3 +1,4 @@
+/*global google*/
 import React, {Component} from "react"
 import {compose} from "recompose"
 import './HotelMap.scss';
@@ -8,9 +9,11 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps"
+import customMarker from '../../assets/pin-red.svg';
+
+
 import axios from "axios";
 import Cards from "../Cards/Cards";
-
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
   return (
     <GoogleMap defaultZoom={10} defaultCenter={{lat: props.location.latitude, lng: props.location.longitude}}>
@@ -24,6 +27,10 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
             key={index}
             onClick={onClick}
             position={{lat: lat, lng: lng}}
+            icon={{
+              url: customMarker,
+              scaledSize: new window.google.maps.Size(25, 25),
+            }}
           >
             {props.selectedMarker === marker &&
             <InfoWindow>
@@ -63,9 +70,6 @@ export default class HotelsMap extends Component {
     this.setState({selectedMarker: marker})
   };
 
-  handleCardClick = (singleHotelData, event) => {
-    this.setState({selectedMarker: singleHotelData});
-  };
   handleCardHover = (singleHotelData, event) => {
     this.setState({selectedMarker: singleHotelData});
   };
@@ -87,8 +91,7 @@ export default class HotelsMap extends Component {
             mapElement={<div style={{height: `100%`}}/>}
           />
         </div>
-        {hotelsData.length > 0 && <Cards hotelsData={this.state.hotelsData} onCardClick={this.handleCardClick}
-                                         onCardHover={this.handleCardHover}/>}
+        {hotelsData.length > 0 && <Cards hotelsData={this.state.hotelsData} onCardHover={this.handleCardHover}/>}
       </div>
     )
   }
