@@ -6,7 +6,7 @@ class Spinner extends Component {
     return (
       <div className="Spinner">
         <div className="loader-container">
-          <h4>loading, please wait...</h4>
+          <h4>Getting your location :) loading, please wait...</h4>
         </div>
       </div>
     );
