@@ -66,6 +66,9 @@ export default class HotelsMap extends Component {
   handleCardClick = (singleHotelData, event) => {
     this.setState({selectedMarker: singleHotelData});
   };
+  handleCardHover = (singleHotelData, event) => {
+    this.setState({selectedMarker: singleHotelData});
+  };
 
   render() {
     const hotelsData = this.state.hotelsData;
@@ -84,7 +87,8 @@ export default class HotelsMap extends Component {
             mapElement={<div style={{height: `100%`}}/>}
           />
         </div>
-        {hotelsData.length > 0 && <Cards hotelsData={this.state.hotelsData} onCardClick={this.handleCardClick}/>}
+        {hotelsData.length > 0 && <Cards hotelsData={this.state.hotelsData} onCardClick={this.handleCardClick}
+                                         onCardHover={this.handleCardHover}/>}
       </div>
     )
   }

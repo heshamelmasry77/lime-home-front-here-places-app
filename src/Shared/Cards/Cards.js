@@ -7,7 +7,13 @@ import {FaCarSide} from 'react-icons/fa';
 
 export default class Cards extends Component {
   handleCardClick(hotel) {
-    this.props.onCardClick(hotel)
+    this.setState({isActive: true}, () => {
+      this.props.onCardClick(hotel);
+    });
+  }
+
+  handleCardHover(hotel) {
+    this.props.onCardHover(hotel)
   }
 
   render() {
@@ -15,6 +21,8 @@ export default class Cards extends Component {
       return (
         <a href={'#'} onClick={() => {
           this.handleCardClick(hotel)
+        }} onMouseEnter={() => {
+          this.handleCardHover(hotel)
         }}>
           {hotel.title && <h3>{hotel.title}</h3>}
           {hotel.category && <h4><FaHotel/> {hotel.category}</h4>}
@@ -38,5 +46,6 @@ export default class Cards extends Component {
 }
 
 Cards.propTypes = {
-  onCardClick: PropTypes.func
+  onCardClick: PropTypes.func,
+  onCardHover: PropTypes.func
 };
